@@ -7,9 +7,10 @@ Modifique este aquivo README.md com as informações adequadas sobre o seu grupo.
 
 Liste o nome, RA e o usuário GitLab para cada integrante do grupo.
 
-- Nome do integrante 1, RA do integrante 1, usuário GitLab do integrante 1
-- Nome do integrante 2, RA do integrante 2, usuário GitLab do integrante 2
-- Nome do integrante 3, RA do integrante 3, usuário GitLab do integrante 3
+- Pedro Francescon Cittolin, 1809849, pedrofrancescon
+- Daniel Eduardo Vieira, 1366424, odvieira
+- Gustavo Maysonnave Franck, 1612166, gustavomfranck
+- Rodrigo Passerino Fischer da Silva, 1615327, rpasserino
 
 ## Descrição da aplicação a ser desenvolvida 
 
