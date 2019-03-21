@@ -74,6 +74,7 @@ if __name__ == "__main__":
 
     hulk = heroes_all[heroes_all.name == 'Hulk']
 
-    imc_hulk = float(hulk['weight_kg'].values[0]) / (float(hulk['height_m'].values[0]) * float(hulk['height_m'].values[0]))
+    imc_hulk = float(hulk['weight_kg'].values[0]) / (float(
+        hulk['height_m'].values[0]) * float(hulk['height_m'].values[0]))
 
     print("IMC do Hulk: %f" % imc_hulk)
