@@ -1,0 +1,18 @@
+CREATE TABLE Usuario (
+	Login VARCHAR(8) NOT NULL, 
+	Nome VARCHAR(30) NOT NULL, 
+	Cidade_natal VARCHAR(30) NOT NULL, 
+	PRIMARY KEY(Login)
+);
+
+CREATE TABLE Filme (
+	Id VARCHAR(8) NOT NULL, 
+	Nome VARCHAR(30) NOT NULL, 
+	Data_de_lancamento DATE() NOT NULL, 
+	Categoria VARCHAR(30), 
+	PRIMARY KEY(Id)
+	FOREIGN KEY(Categoria)
+		REFERENCES Filme(Categoria) 
+			ON DELETE NO ACTION
+			ON UPDATE NO ACTION,
+);
