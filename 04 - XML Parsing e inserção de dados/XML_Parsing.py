@@ -146,7 +146,7 @@ if __name__ == "__main__":
             "dbname='1901EquipePGDR' user='1901EquipePGDR' host='200.134.10.32' password='793953'") as connection:
             with connection.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
                 try:
-                    print(cur.mogrify(query, values[0]))
+                    # print(cur.mogrify(query, values[0]))
                     cur.executemany(query, values)
                 except Exception as e:
                     print(e)
