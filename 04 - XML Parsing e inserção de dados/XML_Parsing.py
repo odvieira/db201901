@@ -4,6 +4,7 @@ from xml.dom.minidom import parse
 from urllib.request import urlopen
 from pandas import DataFrame
 import psycopg2
+from psycopg2 import extras, connect
 
 class Person_DataFrame(DataFrame):
     def __init__(self):
@@ -118,42 +119,46 @@ class AllKnows_DataFrame(DataFrame):
 
 if __name__ == "__main__":
     try:
-        connection = psycopg2.connect("dbname='1901' user='1901' host='200.134.10.32' password='578769'")
-        cur = connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
-
         persons = Person_DataFrame()
-        persons.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/person.xml')
+        persons.init_from_URL(
+            'http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/person.xml')
 
         values = []
         login = ''
         name = ''
         hometown = ''
 
-        for i in enumerate(persons):
-            for attr in persons.columns:
-                if attr == 'uri':
-                    login = persons.at[i, attr]
-                if attr == 'name':
-                    name = persons.at[i, attr]
-                if attr == 'hometown':
-                    hometown = persons.at[i, attr]
-            
-            values.append([login, name, hometown])
+        for i in range(persons.counter):
+                for attr in persons.columns:
+                    if attr == 'uri':
+                        login = persons.at[i, attr].split(
+                            'http://utfpr.edu.br/CSB30/2019/1/')
+                    if attr == 'name':
+                        name = persons.at[i, attr]
+                    if attr == 'hometown':
+                        hometown = persons.at[i, attr]
 
-        query = "INSERT INTO Usuario (Login, Nome, Cidade_natal) VALUES (%s,%s,%s);"
+                values.append(tuple([login[1], name, hometown]))
 
-        cur.executemany(query, values)
+        query = 'INSERT INTO Usuario (Login, Nome, Cidade_natal) VALUES (%s, %s, %s)'
 
-        # Servidor DAINF FORA DO AR, NÃO FOI POSSÍVEL PROSSEGUIR
+        with connect(
+            "dbname='1901EquipePGDR' user='1901EquipePGDR' host='200.134.10.32' password='793953'") as connection:
+            with connection.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
+                try:
+                    print(cur.mogrify(query, values[0]))
+                    cur.executemany(query, values)
+                except Exception as e:
+                    print(e)
 
-        allLikesMusic = AllLikesMusic_DataFrame()
-        allLikesMusic.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/music.xml')
+        # allLikesMusic = AllLikesMusic_DataFrame()
+        # allLikesMusic.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/music.xml')
 
-        allLikesMovie = AllLikesMovie_DataFrame()
-        allLikesMovie.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/movie.xml')
+        # allLikesMovie = AllLikesMovie_DataFrame()
+        # allLikesMovie.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/movie.xml')
 
-        allKnows = AllKnows_DataFrame()
-        allKnows.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/knows.xml')
+        # allKnows = AllKnows_DataFrame()
+        # allKnows.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/knows.xml')
 
-    except Exception() as e:
-        pass
+    except Exception as e:
+        print(e)
