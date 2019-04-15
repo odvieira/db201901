@@ -144,6 +144,8 @@ if __name__ == "__main__":
 
         cur.executemany(query, values)
 
+        # Servidor DAINF FORA DO AR, NÃO FOI POSSÍVEL PROSSEGUIR
+
         allLikesMusic = AllLikesMusic_DataFrame()
         allLikesMusic.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/music.xml')
 
