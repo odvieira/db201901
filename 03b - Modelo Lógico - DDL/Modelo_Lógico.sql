@@ -1,63 +1,63 @@
-CREATE TABLE Usuario (
-	Login VARCHAR(8)  NOT NULL PRIMARY KEY,
+﻿CREATE TABLE Usuario (
+	Login VARCHAR(32)  NOT NULL PRIMARY KEY,
 	Nome VARCHAR(30) NOT NULL, 
 	Cidade_natal VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE Filme(
-	Id VARCHAR(8) NOT NULL PRIMARY KEY,
+	Id VARCHAR(32) NOT NULL PRIMARY KEY,
 	Nome VARCHAR(20) NOT NULL,
 	Data_lancamento DATE NOT NULL,
-	Categoria VARCHAR(20) NOT NULL,	
+	Categoria VARCHAR(20) NOT NULL	
 );
 
 CREATE TABLE Ator (
-	Id VARCHAR(8) NOT NULL PRIMARY KEY, 
+	Id VARCHAR(32) NOT NULL PRIMARY KEY, 
 	Telefone VARCHAR(30) NOT NULL, 
 	Endereco VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE Diretor (
-	Id VARCHAR(8) NOT NULL PRIMARY KEY, 
+	Id VARCHAR(32) NOT NULL PRIMARY KEY, 
 	Telefone VARCHAR(30) NOT NULL, 
 	Endereco VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE ArtistasMusicais (
-	Id VARCHAR(8) NOT NULL PRIMARY KEY, 
+	Id VARCHAR(32) NOT NULL PRIMARY KEY, 
 	Genero_musical VARCHAR(30) NOT NULL, 
 	Nome_artistico VARCHAR(30) NOT NULL,
 	Pais VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE Grupos (
-	Id VARCHAR(8) NOT NULL PRIMARY KEY,
+	Id VARCHAR(32) NOT NULL PRIMARY KEY,
 	FOREIGN KEY(Id) 
 		REFERENCES ArtistasMusicais(Id)
 );
 
 CREATE TABLE Duplas (
-	Id VARCHAR(8) NOT NULL PRIMARY KEY,
+	Id VARCHAR(32) NOT NULL PRIMARY KEY,
 	FOREIGN KEY(Id) 
 		REFERENCES ArtistasMusicais(Id)
 );
 
 CREATE TABLE Cantor (
-	Id VARCHAR(8) NOT NULL PRIMARY KEY,
+	Id VARCHAR(32) NOT NULL PRIMARY KEY,
 	FOREIGN KEY(Id) 
 		REFERENCES ArtistasMusicais(Id)
 );
 
 CREATE TABLE Musico (
-	Id_musico VARCHAR(8) NOT NULL PRIMARY KEY,
-	Nome_real VARCHAR(8) NOT NULL,
-	Estilo_musical VARCHAR(8) NOT NULL,
+	Id VARCHAR(1232) NOT NULL PRIMARY KEY,
+	Nome_real VARCHAR(1232) NOT NULL,
+	Estilo_musical VARCHAR(1232) NOT NULL,
 	Data_nascimento DATE NOT NULL
 );
 
 CREATE TABLE UsuarioBloquearUsuario (
-	Login VARCHAR(8) NOT NULL,
-	Login_bloqueado VARCHAR(8) NOT NULL,
+	Login VARCHAR(32) NOT NULL,
+	Login_bloqueado VARCHAR(32) NOT NULL,
 	PRIMARY KEY(Login, Login_bloqueado),
 	FOREIGN KEY(Login)
 		REFERENCES Usuario(Login),
@@ -66,9 +66,9 @@ CREATE TABLE UsuarioBloquearUsuario (
 );
 
 CREATE TABLE BloquearMotivo (
-	Login VARCHAR(8) NOT NULL,
-	Login_bloqueado VARCHAR(8) NOT NULL,
-	Motivo VARCHAR(8) NOT NULL,
+	Login VARCHAR(32) NOT NULL,
+	Login_bloqueado VARCHAR(32) NOT NULL,
+	Motivo VARCHAR(32) NOT NULL,
 	PRIMARY KEY(Login, Login_bloqueado, Motivo),
 	FOREIGN KEY(Login)
 		REFERENCES Usuario(Login),
@@ -77,8 +77,8 @@ CREATE TABLE BloquearMotivo (
 );
 
 CREATE TABLE UsuarioRegistraConhecidoUsuario (
-	Login VARCHAR(8) NOT NULL,
-	Login_registrado VARCHAR(8) NOT NULL,
+	Login VARCHAR(32) NOT NULL,
+	Login_registrado VARCHAR(32) NOT NULL,
 	PRIMARY KEY(Login, Login_registrado),
 	FOREIGN KEY(Login)
 		REFERENCES Usuario(Login),
@@ -87,8 +87,8 @@ CREATE TABLE UsuarioRegistraConhecidoUsuario (
 );
 
 CREATE TABLE UsuarioAvaliaArtistasMusicais (
-	Login VARCHAR(8) NOT NULL,
-	Id VARCHAR(8) NOT NULL,
+	Login VARCHAR(32) NOT NULL,
+	Id VARCHAR(32) NOT NULL,
 	Nota INTEGER NOT NULL,
 	PRIMARY KEY(Login, Id),
 	FOREIGN KEY(Login)
@@ -98,8 +98,8 @@ CREATE TABLE UsuarioAvaliaArtistasMusicais (
 );
 
 CREATE TABLE UsuarioAvaliaFilme (
-	Login VARCHAR(8) NOT NULL,
-	Id VARCHAR(8) NOT NULL,
+	Login VARCHAR(32) NOT NULL,
+	Id VARCHAR(32) NOT NULL,
 	Nota INTEGER NOT NULL,
 	PRIMARY KEY(Login, Id),
 	FOREIGN KEY(Login)
@@ -109,8 +109,8 @@ CREATE TABLE UsuarioAvaliaFilme (
 );
 
 CREATE TABLE UsuarioGostaFilme (
-	Login VARCHAR(8) NOT NULL,
-	Id VARCHAR(8) NOT NULL,
+	Login VARCHAR(32) NOT NULL,
+	Id VARCHAR(32) NOT NULL,
 	PRIMARY KEY(Login, Id),
 	FOREIGN KEY(Login)
 		REFERENCES Usuario(Login),
@@ -119,8 +119,8 @@ CREATE TABLE UsuarioGostaFilme (
 );
 
 CREATE TABLE FilmePossuiAtor(
-	Id VARCHAR(8) NOT NULL,
-	Id_ator VARCHAR(8) NOT NULL,
+	Id VARCHAR(32) NOT NULL,
+	Id_ator VARCHAR(32) NOT NULL,
 	Salario INTEGER NOT NULL,
 	PRIMARY KEY(Id, Id_ator),
 	FOREIGN KEY(Id)
@@ -131,8 +131,8 @@ CREATE TABLE FilmePossuiAtor(
 
 
 CREATE TABLE AtorEhDiretor(
-	Id_ator VARCHAR(8) NOT NULL,
-	Id_diretor VARCHAR(8) NOT NULL,
+	Id_ator VARCHAR(32) NOT NULL,
+	Id_diretor VARCHAR(32) NOT NULL,
 	PRIMARY KEY(Id_ator, Id_diretor),
 	FOREIGN KEY(Id_ator)
 		REFERENCES Ator(Id),
@@ -141,8 +141,8 @@ CREATE TABLE AtorEhDiretor(
 );
 
 CREATE TABLE DiretorDirigeFilme(
-	Id_diretor VARCHAR(8) NOT NULL,
-	Id_filme VARCHAR(8) NOT NULL,
+	Id_diretor VARCHAR(32) NOT NULL,
+	Id_filme VARCHAR(32) NOT NULL,
 	Salario INTEGER NOT NULL,
 	PRIMARY KEY(Id_diretor, Id_filme),
 	FOREIGN KEY(Id_diretor)
@@ -152,8 +152,8 @@ CREATE TABLE DiretorDirigeFilme(
 );
 
 CREATE TABLE CantorPossuiMusico(
-	Id_artistas_m VARCHAR(8) NOT NULL,
-	Id_musico VARCHAR(8) NOT NULL,
+	Id_artistas_m VARCHAR(32) NOT NULL,
+	Id_musico VARCHAR(32) NOT NULL,
 	PRIMARY KEY(Id_artistas_m, Id_musico),
 	FOREIGN KEY(Id_artistas_m)
 		REFERENCES ArtistasMusicais(Id),
@@ -162,8 +162,8 @@ CREATE TABLE CantorPossuiMusico(
 );
 
 CREATE TABLE DuplasPossuiMusico(
-	Id_artistas_m VARCHAR(8) NOT NULL,
-	Id_musico VARCHAR(8) NOT NULL,
+	Id_artistas_m VARCHAR(32) NOT NULL,
+	Id_musico VARCHAR(32) NOT NULL,
 	PRIMARY KEY(Id_artistas_m, Id_musico),
 	FOREIGN KEY(Id_artistas_m)
 		REFERENCES ArtistasMusicais(Id),
@@ -172,8 +172,8 @@ CREATE TABLE DuplasPossuiMusico(
 );
 
 CREATE TABLE GruposPossuiMusico(
-	Id_artistas_m VARCHAR(8) NOT NULL,
-	Id_musico VARCHAR(8) NOT NULL,
+	Id_artistas_m VARCHAR(32) NOT NULL,
+	Id_musico VARCHAR(32) NOT NULL,
 	PRIMARY KEY(Id_artistas_m, Id_musico),
 	FOREIGN KEY(Id_artistas_m)
 		REFERENCES ArtistasMusicais(Id),
@@ -194,12 +194,12 @@ INSERT INTO Filme VALUES('00000003','Sem Limites','2012-05-13','Ação');
 
 -- Id,	Telefone,	Endereco,
 INSERT INTO Ator VALUES('00000004','9999999999','Travessa Almirante Juca, 222');
-INSERT INTO Ator VALUES('00000005','8888888888','Rua Aiapó, 35');
+INSERT INTO Ator VALUES('00000005','32323232323232323232','Rua Aiapó, 35');
 INSERT INTO Ator VALUES('00000006','7777777777','Alameda Cabral, 56');
 
 -- Id,Telefone,Endereco
 INSERT INTO Diretor VALUES('00000007','5555555555','Travessa Almirante Juca, 227');
-INSERT INTO Diretor VALUES('00000008','4444444444','Rua Aiapó, 37');
+INSERT INTO Diretor VALUES('000000032','4444444444','Rua Aiapó, 37');
 INSERT INTO Diretor VALUES('00000009','3333333333','Alameda Cabral, 57');
 
 -- Id,	Genero_musical,	Nome_artistico,	Pais
@@ -231,7 +231,7 @@ INSERT INTO UsuarioRegistraConhecidoUsuario VALUES('odvieira','gustavomfranck');
 INSERT INTO UsuarioRegistraConhecidoUsuario VALUES('gustavomfranck','pedrofrancescon');
 
 INSERT INTO UsuarioAvaliaArtistasMusicais VALUES('gustavomfranck','00000010','6');
-INSERT INTO UsuarioAvaliaArtistasMusicais VALUES('pedrofrancescon','00000011','8');
+INSERT INTO UsuarioAvaliaArtistasMusicais VALUES('pedrofrancescon','00000011','32');
 INSERT INTO UsuarioAvaliaArtistasMusicais VALUES('gustavomfranck','00000013','7');
 
 INSERT INTO UsuarioAvaliaFilme VALUES('odvieira','00000001','10');
@@ -247,10 +247,10 @@ INSERT INTO FilmePossuiAtor VALUES('00000002','00000005',14000);
 INSERT INTO FilmePossuiAtor VALUES('00000003','00000006',7500);
 
 INSERT INTO AtorEhDiretor VALUES('00000004','00000007');
-INSERT INTO AtorEhDiretor VALUES('00000005','00000008');
+INSERT INTO AtorEhDiretor VALUES('00000005','000000032');
 
 INSERT INTO DiretorDirigeFilme VALUES('00000007','00000001',24000);
-INSERT INTO DiretorDirigeFilme VALUES('00000008','00000003',19000);
+INSERT INTO DiretorDirigeFilme VALUES('000000032','00000003',19000);
 
 INSERT INTO CantorPossuiMusico VALUES('00000010','00000014');
 

@@ -3,6 +3,7 @@
 from xml.dom.minidom import parse
 from urllib.request import urlopen
 from pandas import DataFrame
+import psycopg2
 
 class Person_DataFrame(DataFrame):
     def __init__(self):
@@ -116,15 +117,38 @@ class AllKnows_DataFrame(DataFrame):
         return
 
 if __name__ == "__main__":
-    
-    persons = Person_DataFrame()
-    persons.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/person.xml')
+    try:
+        connection = psycopg2.connect("dbname='1901' user='1901' host='200.134.10.32' password='578769'")
+        cur = connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-    allLikesMusic = AllLikesMusic_DataFrame()
-    allLikesMusic.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/music.xml')
+        persons = Person_DataFrame()
+        persons.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/person.xml')
 
-    allLikesMovie = AllLikesMovie_DataFrame()
-    allLikesMovie.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/movie.xml')
+        values = []
+        login = ''
+        name = ''
+        hometown = ''
 
-    allKnows = AllKnows_DataFrame()
-    allKnows.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/knows.xml')
+        for i in enumerate(persons):
+            for attr in persons.columns:
+                if attr == 'uri':
+                    login = persons.at[i, attr]
+                if attr == 'name':
+                    name = persons.at[i, attr]
+                if attr == 'hometown':
+                    hometown = persons.at[i, attr]
+            
+            values.append([login, name, hometown])
+
+        query = "INSERT INTO Usuario (Login, Nome, Cidade_natal) VALUES (%s,%s,%s);"
+
+        cur.executemany(query, values)
+
+        allLikesMusic = AllLikesMusic_DataFrame()
+        allLikesMusic.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/music.xml')
+
+        allLikesMovie = AllLikesMovie_DataFrame()
+        allLikesMovie.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/movie.xml')
+
+        allKnows = AllKnows_DataFrame()
+        allKnows.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/knows.xml')
