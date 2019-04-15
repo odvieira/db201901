@@ -127,39 +127,39 @@ class AllKnows_DataFrame(DataFrame):
 if __name__ == "__main__":
     credentials = "dbname='1901EquipePGDR' user='1901EquipePGDR' host='200.134.10.32' password='793953'"
 
-    try: # Persons parse
-        persons = Person_DataFrame()
-        persons.init_from_URL(
-            'http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/person.xml')
+    # try: # Persons parse
+    #     persons = Person_DataFrame()
+    #     persons.init_from_URL(
+    #         'http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/person.xml')
 
-        values = []
-        login = ''
-        name = ''
-        hometown = ''
+    #     values = []
+    #     login = ''
+    #     name = ''
+    #     hometown = ''
 
-        for i in range(persons.counter):
-            for attr in persons.columns:
-                if attr == 'uri':
-                    login = persons.at[i, attr].split(
-                        'http://utfpr.edu.br/CSB30/2019/1/')
-                if attr == 'name':
-                    name = persons.at[i, attr]
-                if attr == 'hometown':
-                    hometown = persons.at[i, attr]
+    #     for i in range(persons.counter):
+    #         for attr in persons.columns:
+    #             if attr == 'uri':
+    #                 login = persons.at[i, attr].split(
+    #                     'http://utfpr.edu.br/CSB30/2019/1/')
+    #             if attr == 'name':
+    #                 name = persons.at[i, attr]
+    #             if attr == 'hometown':
+    #                 hometown = persons.at[i, attr]
 
-            values.append(tuple([login[1], name, hometown]))
+    #         values.append(tuple([login[1], name, hometown]))
 
-        query = 'INSERT INTO Usuario (Login, Nome, Cidade_natal) VALUES (%s, %s, %s)'
+    #     query = 'INSERT INTO Usuario (Login, Nome, Cidade_natal) VALUES (%s, %s, %s)'
 
-        with connect(credentials) as connection:
-            with connection.cursor(cursor_factory=extras.DictCursor) as cur:
-                try:
-                    # print(cur.mogrify(query, values[0]))
-                    cur.executemany(query, values)
-                except Exception as e:
-                    print(e)
-    except Exception as e:
-        print(e)
+    #     with connect(credentials) as connection:
+    #         with connection.cursor(cursor_factory=extras.DictCursor) as cur:
+    #             try:
+    #                 # print(cur.mogrify(query, values[0]))
+    #                 cur.executemany(query, values)
+    #             except Exception as e:
+    #                 print(e)
+    # except Exception as e:
+    #     print(e)
 
     try:  # All likes Music
         allLikesMusic = AllLikesMusic_DataFrame()
@@ -183,6 +183,7 @@ if __name__ == "__main__":
         with connect(credentials) as connection:
             with connection.cursor(cursor_factory=extras.DictCursor) as cur:
                 try:
+                    
                     cur.executemany(query, values)
                 except Exception as e:
                     print(e)
