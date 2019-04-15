@@ -3,12 +3,13 @@
 from xml.dom.minidom import parse
 from urllib.request import urlopen
 from pandas import DataFrame
-import psycopg2
 from psycopg2 import extras, connect
+
 
 class Person_DataFrame(DataFrame):
     def __init__(self):
-        super(Person_DataFrame, self).__init__(columns=["uri", "name", "hometown", "birthdate"])
+        super(Person_DataFrame, self).__init__(
+            columns=["uri", "name", "hometown", "birthdate"])
 
         self.counter = 0
 
@@ -33,9 +34,11 @@ class Person_DataFrame(DataFrame):
 
         return
 
+
 class AllLikesMusic_DataFrame(DataFrame):
     def __init__(self):
-        super(AllLikesMusic_DataFrame, self).__init__(columns=["person", "rating", "bandUri"])
+        super(AllLikesMusic_DataFrame, self).__init__(
+            columns=["person", "rating", "bandUri"])
 
         self.counter = 0
 
@@ -44,13 +47,13 @@ class AllLikesMusic_DataFrame(DataFrame):
     def init_from_URL(self, url):
         domTree = parse(urlopen(url))
 
-        allLikesMusic = domTree.documentElement.getElementsByTagName("LikesMusic")
+        allLikesMusic = domTree.documentElement.getElementsByTagName(
+            "LikesMusic")
 
         for likesMusic in allLikesMusic:
             self.new_AllLikesMusic_DataFrame_line(likesMusic)
 
         return
-
 
     def new_AllLikesMusic_DataFrame_line(self, likesMusic):
 
@@ -61,9 +64,11 @@ class AllLikesMusic_DataFrame(DataFrame):
 
         return
 
+
 class AllLikesMovie_DataFrame(DataFrame):
     def __init__(self):
-        super(AllLikesMovie_DataFrame, self).__init__(columns=["person", "rating", "movieUri"])
+        super(AllLikesMovie_DataFrame, self).__init__(
+            columns=["person", "rating", "movieUri"])
 
         self.counter = 0
 
@@ -72,13 +77,13 @@ class AllLikesMovie_DataFrame(DataFrame):
     def init_from_URL(self, url):
         domTree = parse(urlopen(url))
 
-        allLikesMovie = domTree.documentElement.getElementsByTagName("LikesMovie")
+        allLikesMovie = domTree.documentElement.getElementsByTagName(
+            "LikesMovie")
 
         for likesMovie in allLikesMovie:
             self.new_AllLikesMovie_DataFrame_line(likesMovie)
 
         return
-
 
     def new_AllLikesMovie_DataFrame_line(self, likesMovie):
 
@@ -89,9 +94,11 @@ class AllLikesMovie_DataFrame(DataFrame):
 
         return
 
+
 class AllKnows_DataFrame(DataFrame):
     def __init__(self):
-        super(AllKnows_DataFrame, self).__init__(columns=["person", "colleague"])
+        super(AllKnows_DataFrame, self).__init__(
+            columns=["person", "colleague"])
 
         self.counter = 0
 
@@ -107,7 +114,6 @@ class AllKnows_DataFrame(DataFrame):
 
         return
 
-
     def new_AllKnows_DataFrame_line(self, allKnows):
 
         for atributo in self.columns:
@@ -117,8 +123,11 @@ class AllKnows_DataFrame(DataFrame):
 
         return
 
+
 if __name__ == "__main__":
-    try:
+    credentials = "dbname='1901EquipePGDR' user='1901EquipePGDR' host='200.134.10.32' password='793953'"
+
+    try: # Persons parse
         persons = Person_DataFrame()
         persons.init_from_URL(
             'http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/person.xml')
@@ -129,30 +138,57 @@ if __name__ == "__main__":
         hometown = ''
 
         for i in range(persons.counter):
-                for attr in persons.columns:
-                    if attr == 'uri':
-                        login = persons.at[i, attr].split(
-                            'http://utfpr.edu.br/CSB30/2019/1/')
-                    if attr == 'name':
-                        name = persons.at[i, attr]
-                    if attr == 'hometown':
-                        hometown = persons.at[i, attr]
+            for attr in persons.columns:
+                if attr == 'uri':
+                    login = persons.at[i, attr].split(
+                        'http://utfpr.edu.br/CSB30/2019/1/')
+                if attr == 'name':
+                    name = persons.at[i, attr]
+                if attr == 'hometown':
+                    hometown = persons.at[i, attr]
 
-                values.append(tuple([login[1], name, hometown]))
+            values.append(tuple([login[1], name, hometown]))
 
         query = 'INSERT INTO Usuario (Login, Nome, Cidade_natal) VALUES (%s, %s, %s)'
 
-        with connect(
-            "dbname='1901EquipePGDR' user='1901EquipePGDR' host='200.134.10.32' password='793953'") as connection:
-            with connection.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
+        with connect(credentials) as connection:
+            with connection.cursor(cursor_factory=extras.DictCursor) as cur:
                 try:
                     # print(cur.mogrify(query, values[0]))
                     cur.executemany(query, values)
                 except Exception as e:
                     print(e)
+    except Exception as e:
+        print(e)
 
-        # allLikesMusic = AllLikesMusic_DataFrame()
-        # allLikesMusic.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/music.xml')
+    try:  # All likes Music
+        allLikesMusic = AllLikesMusic_DataFrame()
+        allLikesMusic.init_from_URL(
+            'http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/music.xml')
+
+        values = []
+        login = ''
+        rating = 0
+        bandaUri = ''
+
+        for v in allLikesMusic.itertuples(index=False):
+            login = v[0].split('http://utfpr.edu.br/CSB30/2019/1/')
+            rating = v[1].split("'")
+            bandaUri = v[2].split("https://en.wikipedia.org/wiki/")
+
+            values.append(tuple([login[1], int(rating[0]), bandaUri[1]]))
+
+        query = query = 'INSERT INTO UsuarioAvaliaArtistasMusicais (Login, Nota, Id) VALUES (%s, %s, %s)'
+
+        with connect(credentials) as connection:
+            with connection.cursor(cursor_factory=extras.DictCursor) as cur:
+                try:
+                    cur.executemany(query, values)
+                except Exception as e:
+                    print(e)
+
+    except Exception as e:
+        print(e)
 
         # allLikesMovie = AllLikesMovie_DataFrame()
         # allLikesMovie.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/movie.xml')
