@@ -5,7 +5,6 @@ from urllib.request import urlopen
 from pandas import DataFrame
 from psycopg2 import extras, connect
 
-
 class Person_DataFrame(DataFrame):
     def __init__(self):
         super(Person_DataFrame, self).__init__(
@@ -191,11 +190,58 @@ if __name__ == "__main__":
     except Exception as e:
         print(e)
 
-        # allLikesMovie = AllLikesMovie_DataFrame()
-        # allLikesMovie.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/movie.xml')
+    try:  # All likes Movie
+        allLikesMovie = AllLikesMovie_DataFrame()
+        allLikesMovie.init_from_URL(
+            'http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/movie.xml')
 
-        # allKnows = AllKnows_DataFrame()
-        # allKnows.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/knows.xml')
+        values = []
+        login = ''
+        rating = 0
+        movieUri = ''
+
+        for v in allLikesMovie.itertuples(index=False):
+            login = v[0].split('http://utfpr.edu.br/CSB30/2019/1/')
+            rating = v[1].split("'")
+            movieUri = v[2].split("http://www.imdb.com/title/")
+
+            values.append(tuple([login[1], int(rating[0]), movieUri[1]]))
+
+        query = query = 'INSERT INTO UsuarioAvaliaFilme (Login, Nota, Id) VALUES (%s, %s, %s)'
+
+        with connect(credentials) as connection:
+            with connection.cursor(cursor_factory=extras.DictCursor) as cur:
+                try:
+                    cur.executemany(query, values)
+                except Exception as e:
+                    print(e)
+
+    except Exception as e:
+        print(e)
+
+    try:  # All Knows
+        allKnows = AllKnows_DataFrame()
+        allKnows.init_from_URL(
+            'http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/knows.xml')
+
+        values = []
+        login = ''
+        colleague = ''
+
+        for v in allKnows.itertuples(index=False):
+            login = v[0].split('http://utfpr.edu.br/CSB30/2019/1/')
+            colleague = v[1].split('http://utfpr.edu.br/CSB30/2019/1/')
+
+            values.append(tuple([login[1], colleague[1]]))
+
+        query = query = 'INSERT INTO UsuarioRegistraConhecidoUsuario (Login, Login_registrado) VALUES (%s, %s)'
+
+        with connect(credentials) as connection:
+            with connection.cursor(cursor_factory=extras.DictCursor) as cur:
+                try:
+                    cur.executemany(query, values)
+                except Exception as e:
+                    print(e)
 
     except Exception as e:
         print(e)
