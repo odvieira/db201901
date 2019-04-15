@@ -154,3 +154,6 @@ if __name__ == "__main__":
 
         allKnows = AllKnows_DataFrame()
         allKnows.init_from_URL('http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/knows.xml')
+
+    except Exception() as e:
+        pass
