@@ -76,7 +76,19 @@ if __name__ == "__main__":
         with connect(credentials) as connection:
             with connection.cursor(cursor_factory=extras.DictCursor) as cur:
                 try:
-                    cur.executemany(query, values)
+                    lst = []
+                    result = []
+                    for v in values:
+                        try:
+                            item = tuple([v[0], v[2]])
+                            if item not in lst:
+                                lst.append(item)
+                                result.append(tuple([v[0], v[1], v[2]]))
+                        except Exception as e:
+                            print(e)
+                            continue
+
+                    cur.executemany(query, lst)
                 except Exception as e:
                     print(e)
 
