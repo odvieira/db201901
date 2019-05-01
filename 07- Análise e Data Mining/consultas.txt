@@ -1,0 +1,133 @@
+-- 1.
+
+-- RESPOSTA
+SELECT id, AVG(Nota), stddev(Nota)
+    FROM   <TABELA>
+    GROUP BY id;
+
+-- VIEWS CRIADAS PARA FACILITAR PRÓXIMOS EXERCÍCIOS
+
+CREATE OR REPLACE VIEW RatingFilme AS
+    SELECT id, AVG(Nota), stddev(Nota)
+    	FROM   UsuarioAvaliaFilme
+   	GROUP BY id;
+
+CREATE OR REPLACE VIEW RatingArtistasMusicais AS
+    SELECT id, AVG(Nota), stddev(Nota)
+    	FROM   UsuarioAvaliaArtistasMusicais
+    	GROUP BY id;
+
+-- 2.
+CREATE OR REPLACE VIEW AvAM AS
+    SELECT id, count(*) as Popularidade
+   	 FROM UsuarioAvaliaArtistasMusicais
+   	 GROUP BY id;
+SELECT id, avg, Popularidade
+    FROM UsuarioAvaliaArtistasMusicais u
+    NATURAL JOIN RatingArtistasMusicais r
+    NATURAL JOIN AvAM
+    WHERE Popularidade > 1
+    ORDER BY r.avg DESC;
+
+CREATE OR REPLACE VIEW AvF AS
+	SELECT id, count(*) as Popularidade
+    		FROM UsuarioAvaliaFilme
+    		GROUP BY id;
+SELECT id, avg, Popularidade
+	FROM UsuarioAvaliaFilme u
+	NATURAL JOIN RatingFilme r
+	NATURAL JOIN AvF
+	WHERE Popularidade > 1
+	ORDER BY r.avg DESC;
+--3. 
+SELECT id, Popularidade
+	FROM UsuarioAvaliaFilme u
+	NATURAL JOIN RatingFilme r
+	NATURAL JOIN AvF
+	ORDER BY Popularidade DESC
+	LIMIT 10;
+
+SELECT id, Popularidade
+	FROM UsuarioAvaliaArtistasMusicais u
+	NATURAL JOIN RatingArtistasMusicais r
+	NATURAL JOIN AvAM
+	ORDER BY Popularidade DESC
+	LIMIT 10;
+
+--4.
+create or replace view conheceNormalizada as
+    SELECT login, login_registrado
+   	 FROM UsuarioRegistraConhecidoUsuario
+    UNION SELECT login_registrado, login
+   	 FROM UsuarioRegistraConhecidoUsuario;
+
+--5. 
+create or replace view DuplasSomadas as
+	select tab1.login, tab1.login_registrado, tab2.conta+tab3.conta as soma
+	from conhecenormalizada as tab1
+	inner join CurteFilme as tab2 on tab1.login = tab2.login
+	inner join CurteFilme as tab3 on tab1.login_registrado=tab3.login
+	where tab1.login < tab1.login_registrado;
+
+select login, login_registrado, soma
+	from DuplasSomadas
+	where soma = (select max(soma) from Somados);
+--6.
+
+create or replace view Gustavo as 
+select login_registrado
+from conhecenormalizada 
+where login like 'DI1901gustavofranck';
+
+create or replace view Daniel as 
+select login_registrado
+from conhecenormalizada 
+where login like 'DI1901danielvieira';
+
+create or replace view Pedro as 
+select login_registrado
+from conhecenormalizada 
+where login like 'DI1901pedrocittolin';
+
+create or replace view Rodrigo as 
+select login_registrado
+from conhecenormalizada 
+where login like 'DI1901rodrigosil';
+
+select login_registrado, count(login_registrado) 
+from conhecenormalizada natural join Gustavo 
+group by login_registrado
+
+union
+
+select login_registrado, count(login_registrado) 
+from conhecenormalizada natural join Rodrigo 
+group by login_registrado
+
+union
+
+select login_registrado, count(login_registrado) 
+from conhecenormalizada natural join pedro 
+group by login_registrado
+
+union
+
+select login_registrado, count(login_registrado) 
+from conhecenormalizada natural join daniel 
+group by login_registrado
+
+
+
+--7.
+
+select popularidade NoPessoas, count(popularidade) NoFilmes 
+from avf 
+group by popularidade 
+order by popularidade'
+
+--8.
+
+select conta NoFilmes, count(conta) NoPessoas 
+from curtefilme 
+group by conta 
+order by conta
