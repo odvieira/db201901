@@ -1,0 +1,25 @@
+--9,1.
+
+create or replace view maximus as
+
+SELECT max(char_length(id)) AS maximo
+
+FROM artistasmusicais
+
+group by id;
+
+
+
+select avg(maximo)
+
+from maximus
+
+--9,2.
+
+select substring(id,1,1),COUNT(*) as first_char
+
+FROM artistasmusicais
+
+GROUP BY substring(id,1,1)
+
+ORDER BY first_char ASC
