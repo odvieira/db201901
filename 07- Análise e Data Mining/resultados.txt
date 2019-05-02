@@ -1,0 +1,360 @@
+
+CONSULTA 0
+
+
+            id       avg    stddev
+0   tt0027977/  5.000000       NaN
+1   tt1675434/  3.666667  1.154701
+2   tt0099685/  4.000000       NaN
+3   tt0910970/  4.333333  0.516398
+4   tt0093779/  5.000000       NaN
+5   tt0112573/  3.000000       NaN
+6   tt0209144/  3.000000       NaN
+7   tt0071562/  5.000000  0.000000
+8   tt0347149/  5.000000       NaN
+9   tt0110912/  4.428571  0.534522
+10  tt1345836/  4.142857  0.690066
+11  tt1205489/  5.000000       NaN
+12  tt0120815/  4.000000       NaN
+13  tt0180093/  5.000000       NaN
+14  tt0796366/  4.000000       NaN
+15  tt0107290/  3.500000  0.707107
+16    00000003  2.000000       NaN
+17  tt0266697/  5.000000       NaN
+18  tt0211915/  5.000000  0.000000
+19  tt0082971/  3.500000  0.707107
+20  tt0848228/  4.375000  0.744024
+21  tt0208092/  4.000000       NaN
+22  tt0108052/  5.000000  0.000000
+23  tt0363163/  4.000000       NaN
+24  tt0068646/  5.000000  0.000000
+25  tt0364569/  5.000000       NaN
+26  tt1049413/  5.000000       NaN
+27  tt0057012/  5.000000       NaN
+28  tt0266543/  5.000000  0.000000
+29  tt0361748/  4.600000  0.547723
+..         ...       ...       ...
+56  tt0246578/  3.500000  0.707107
+57  tt0047396/  5.000000       NaN
+58  tt1375666/  4.307692  0.751068
+59  tt0114709/  3.666667  2.309401
+60  tt0758758/  5.000000       NaN
+61  tt0167260/  4.500000  0.577350
+62  tt0092005/  3.000000       NaN
+63  tt0075148/  5.000000       NaN
+64  tt0395169/  4.000000       NaN
+65  tt0071853/  4.333333  0.577350
+66  tt0103064/  4.000000  1.414214
+67  tt0245429/  4.500000  1.000000
+68  tt0076759/  3.400000  1.516575
+69  tt0114369/  4.666667  0.577350
+70  tt0435761/  4.250000  1.500000
+71  tt0133093/  4.272727  0.786245
+72  tt0078748/  5.000000       NaN
+73  tt0062622/  4.000000  1.414214
+74  tt0434409/  4.000000  0.707107
+75  tt1659337/  1.000000       NaN
+76  tt0119698/  5.000000       NaN
+77  tt0454876/  3.000000  1.000000
+78  tt0317248/  4.000000  1.414214
+79  tt0892769/  4.400000  0.894427
+80  tt1130884/  5.000000  0.000000
+81  tt0114814/  3.000000       NaN
+82  tt0382932/  4.000000  0.000000
+83  tt1136608/  3.000000  0.000000
+84  tt0109830/  4.428571  0.534522
+85  tt0086190/  5.000000  0.000000
+
+[86 rows x 3 columns]
+
+CONSULTA 1
+
+
+                           id       avg    stddev
+0            Armin_van_Buuren  3.000000       NaN
+1                    Gorillaz  5.000000       NaN
+2                   Heidevolk  5.000000       NaN
+3              Sabaton_(band)  4.000000       NaN
+4                     O_Rappa  5.000000       NaN
+5                Parov_Stelar  4.000000       NaN
+6              S%C3%B3lstafir  5.000000       NaN
+7                    00000013  7.000000       NaN
+8               Glass_Animals  3.000000       NaN
+9           Fiddler%27s_Green  5.000000       NaN
+10              Thundamentals  5.000000       NaN
+11                      Lorde  4.000000       NaN
+12          Grimes_(musician)  5.000000       NaN
+13                  The_Doors  4.500000  0.707107
+14                     Sum_41  4.000000       NaN
+15              Cocteau_Twins  5.000000       NaN
+16              MC_Guim%C3%AA  1.000000       NaN
+17                  Radiohead  4.000000  1.732051
+18               Tupac_Shakur  5.000000       NaN
+19                      Aimer  5.000000       NaN
+20                 AOA_(band)  5.000000       NaN
+21            Guns_N%27_Roses  5.000000  0.000000
+22           Have_a_Nice_Life  5.000000       NaN
+23   Taylor_Davis_(violinist)  5.000000       NaN
+24                    Rihanna  5.000000       NaN
+25         Sam_Smith_(singer)  5.000000       NaN
+26                     Eminem  3.428571  1.272418
+27    Scandal_(Japanese_band)  5.000000       NaN
+28               Milky_Chance  3.000000       NaN
+29             Caravan_Palace  5.000000       NaN
+..                        ...       ...       ...
+185               Suicideboys  5.000000       NaN
+186                  Coldplay  4.000000       NaN
+187                 Nightwish  4.000000       NaN
+188           Hiroyuki_Sawano  5.000000       NaN
+189                 Green_Day  4.000000  1.000000
+190   Perfume_(Japanese_band)  4.000000       NaN
+191              Beyonc%C3%A9  4.000000  1.414214
+192          Mumford_%26_Sons  5.000000       NaN
+193                Katy_Perry  4.000000       NaN
+194          Racionais_MC%27s  4.000000       NaN
+195              Clean_Bandit  4.000000       NaN
+196             Lewis_Del_Mar  4.000000       NaN
+197              Led_Zeppelin  5.000000       NaN
+198                Kanye_West  5.000000       NaN
+199                 Aerosmith  4.000000       NaN
+200               Muse_(band)  5.000000       NaN
+201               Iron_Maiden  5.000000       NaN
+202      Two_Door_Cinema_Club  4.000000  0.000000
+203                     Jay-Z  4.500000  0.707107
+204             Accept_(band)  5.000000       NaN
+205               Ti%C3%ABsto  3.000000       NaN
+206                 Van_Canto  5.000000       NaN
+207        Legi%C3%A3o_Urbana  4.000000       NaN
+208           Young_the_Giant  5.000000       NaN
+209                    Sayuri  4.000000       NaN
+210                   6ix9ine  4.000000       NaN
+211             Kings_of_Leon  3.000000       NaN
+212                Pink_Floyd  5.000000       NaN
+213                   J._Cole  4.000000       NaN
+214           Whitney_Houston  4.000000       NaN
+
+[215 rows x 3 columns]
+
+CONSULTA 2
+
+
+                         id       avg  popularidade
+0           Guns_N%27_Roses  5.000000             2
+1               The_Strokes  5.000000             2
+2              Queen_(band)  5.000000             4
+3                   Beyoncé  5.000000             2
+4                Ed_Sheeran  5.000000             4
+5   Five_Finger_Death_Punch  5.000000             2
+6                Ed_Sheeran  5.000000             4
+7              Queen_(band)  5.000000             4
+8       Panic!_at_the_Disco  5.000000             2
+9                Ed_Sheeran  5.000000             4
+10                  Beyoncé  5.000000             2
+11                    Alt-J  5.000000             2
+12        Charlie_Brown_Jr.  5.000000             2
+13  Five_Finger_Death_Punch  5.000000             2
+14               Ed_Sheeran  5.000000             4
+15             Queen_(band)  5.000000             4
+16        Charlie_Brown_Jr.  5.000000             2
+17      Panic!_at_the_Disco  5.000000             2
+18             Queen_(band)  5.000000             4
+19          Guns_N%27_Roses  5.000000             2
+20              The_Strokes  5.000000             2
+21                    Alt-J  5.000000             2
+22                Metallica  4.666667             3
+23                Metallica  4.666667             3
+24        Avenged_Sevenfold  4.666667             3
+25        Avenged_Sevenfold  4.666667             3
+26        Avenged_Sevenfold  4.666667             3
+27                Metallica  4.666667             3
+28         Drake_(musician)  4.500000             2
+29             XXXTentacion  4.500000             2
+..                      ...       ...           ...
+64          Imagine_Dragons  4.166667             6
+65              David_Bowie  4.000000             2
+66                Radiohead  4.000000             3
+67              The_Killers  4.000000             3
+68                Green_Day  4.000000             3
+69                Green_Day  4.000000             3
+70              The_Killers  4.000000             3
+71                Radiohead  4.000000             3
+72     Two_Door_Cinema_Club  4.000000             2
+73              The_Killers  4.000000             3
+74                Radiohead  4.000000             3
+75              David_Bowie  4.000000             2
+76                Green_Day  4.000000             3
+77             Beyonc%C3%A9  4.000000             2
+78             Beyonc%C3%A9  4.000000             2
+79     Two_Door_Cinema_Club  4.000000             2
+80                     MGMT  3.500000             2
+81                     MGMT  3.500000             2
+82                   Eminem  3.428571             7
+83                   Eminem  3.428571             7
+84                   Eminem  3.428571             7
+85                   Eminem  3.428571             7
+86                   Eminem  3.428571             7
+87                   Eminem  3.428571             7
+88                   Eminem  3.428571             7
+89                Lady_Gaga  3.333333             3
+90                Lady_Gaga  3.333333             3
+91                Lady_Gaga  3.333333             3
+92                Alok_(DJ)  3.000000             2
+93                Alok_(DJ)  3.000000             2
+
+[94 rows x 3 columns]
+
+CONSULTA 3
+
+
+             id       avg  popularidade
+0    tt0068646/  5.000000             4
+1    tt0468569/  5.000000             3
+2    tt0075314/  5.000000             2
+3    tt0071562/  5.000000             2
+4    tt0110357/  5.000000             3
+5    tt1201607/  5.000000             5
+6    tt0110357/  5.000000             3
+7    tt0086190/  5.000000             3
+8    tt0086190/  5.000000             3
+9    tt0468569/  5.000000             3
+10   tt0198781/  5.000000             3
+11   tt1201607/  5.000000             5
+12   tt0198781/  5.000000             3
+13   tt0071562/  5.000000             2
+14   tt0068646/  5.000000             4
+15   tt1201607/  5.000000             5
+16   tt0468569/  5.000000             3
+17   tt0108052/  5.000000             2
+18   tt0266543/  5.000000             2
+19   tt0110357/  5.000000             3
+20   tt0068646/  5.000000             4
+21   tt0083658/  5.000000             2
+22   tt1130884/  5.000000             2
+23   tt0075314/  5.000000             2
+24   tt0086190/  5.000000             3
+25   tt0068646/  5.000000             4
+26   tt0108052/  5.000000             2
+27   tt1201607/  5.000000             5
+28   tt0083658/  5.000000             2
+29   tt0266543/  5.000000             2
+..          ...       ...           ...
+173  tt0066921/  3.750000             4
+174  tt0066921/  3.750000             4
+175  tt0066921/  3.750000             4
+176  tt0066921/  3.750000             4
+177  tt1675434/  3.666667             3
+178  tt0114709/  3.666667             3
+179  tt0114709/  3.666667             3
+180  tt1675434/  3.666667             3
+181  tt0114709/  3.666667             3
+182  tt1675434/  3.666667             3
+183  tt0246578/  3.500000             2
+184  tt0372784/  3.500000             2
+185  tt0107290/  3.500000             2
+186  tt0082971/  3.500000             2
+187  tt0372784/  3.500000             2
+188  tt0082971/  3.500000             2
+189  tt0947798/  3.500000             2
+190  tt0246578/  3.500000             2
+191  tt0947798/  3.500000             2
+192  tt0107290/  3.500000             2
+193  tt0076759/  3.400000             5
+194  tt0076759/  3.400000             5
+195  tt0076759/  3.400000             5
+196  tt0076759/  3.400000             5
+197  tt0076759/  3.400000             5
+198  tt0454876/  3.000000             3
+199  tt0454876/  3.000000             3
+200  tt1136608/  3.000000             2
+201  tt1136608/  3.000000             2
+202  tt0454876/  3.000000             3
+
+[203 rows x 3 columns]
+
+CONSULTA 4
+
+
+           id  popularidade
+0  tt1375666/            13
+1  tt0137523/            12
+2  tt0133093/            11
+3  tt0848228/             8
+4  tt1345836/             7
+5  tt0110912/             7
+6  tt0109830/             7
+7  tt1853728/             7
+8  tt0088763/             6
+9  tt0080684/             6
+
+CONSULTA 5
+
+
+                      id  popularidade
+0                 Eminem             7
+1        Imagine_Dragons             6
+2  Red_Hot_Chili_Peppers             5
+3             Ed_Sheeran             4
+4           Queen_(band)             4
+5                  AC/DC             3
+6         Arctic_Monkeys             3
+7      Avenged_Sevenfold             3
+8           Foo_Fighters             3
+9              Green_Day             3
+
+CONSULTA 6
+
+
+                      login     login_registrado  soma
+0  DI1901jordaosoviersovski  DI1901thiagobubniak    29
+
+CONSULTA 7
+
+
+            login_registrado  count
+0        DI1901gustavofranck      4
+1     DI1901steventunnicliff      8
+2         DI1901danielvieira      9
+3         DI1901carolinalima     11
+4   DI1901pedrowoiciechovski      5
+5          DI1901joaofonsaka      3
+6        DI1901pedrocittolin      5
+7         DI1901gregoryfaria      3
+8           DI1901ivanjunior      5
+9           DI1901miguelneto      4
+10       DI1901brunapinheiro     13
+11     DI1901evertonoliveira      7
+12  DI1901giovanniforastieri     10
+13          DI1901feliperego      4
+14         DI1901andreolivei      2
+15          DI1901lucassilva      7
+
+CONSULTA 8
+
+
+    nopessoas  nofilmes
+0           1        37
+1           2        18
+2           3         9
+3           4         5
+4           5         6
+5           6         3
+6           7         4
+7           8         1
+8          11         1
+9          12         1
+10         13         1
+
+CONSULTA 9
+
+
+   nofilmes  nopessoas
+0         1          3
+1         7          8
+2         8          8
+3         9          1
+4        10          3
+5        11          1
+6        12          1
+7        13          2
+8        14          1
+9        15          1
