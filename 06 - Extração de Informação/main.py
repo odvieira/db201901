@@ -25,7 +25,7 @@ if __name__ == "__main__":
 					continue
 				lista_artistas.append(artista_musical[0])
 			counter = 1
-			total = len(lista_filmes)
+			total = len(lista_artistas)
 			# CRIANDO XML E ITERANDO ARTISTAS
 			xml_art = ET.Element("ArtistasMusicais")
 			for nome_artista in lista_artistas:
