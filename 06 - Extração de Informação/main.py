@@ -29,7 +29,7 @@ if __name__ == "__main__":
 			# CRIANDO XML E ITERANDO ARTISTAS
 			xml_art = ET.Element("ArtistasMusicais")
 			for nome_artista in lista_artistas:
-				print('REALIZANDO BUSCA'+counter+'/'+total+' (ARTISTA): ' + nome_artista)
+				print('REALIZANDO BUSCA '+str(counter)+'/'+str(total)+' (ARTISTA): ' + nome_artista)
 
 				url = requests.get("https://en.wikipedia.org/wiki/"+nome_artista,headers=headers)
 				data = url.text
@@ -104,7 +104,7 @@ if __name__ == "__main__":
 			counter = 1
 			total = len(lista_filmes)
 			for id_filme in lista_filmes:
-				print('REALIZANDO BUSCA'+counter+'/'+total+' (FILME): ' + id_filme)
+				print('REALIZANDO BUSCA '+str(counter)+'/'+str(total)+' (FILME): ' + id_filme)
 				# REQUEST IMDB
 				url = requests.get('https://www.imdb.com/title/'+id_filme,headers=headers)				
 				data = url.text
